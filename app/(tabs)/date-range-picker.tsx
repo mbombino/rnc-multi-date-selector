@@ -19,18 +19,15 @@ export const DateRangePicker = (props: DateRangePickerProps) => {
   });
 
   const onDayPress = (day: any) => {
-    if (
-      !state.isFromDatePicked ||
-      (state.isFromDatePicked && state.isToDatePicked)
-    ) {
+    if (!state.isFromDatePicked || state.isToDatePicked) {
       setupStartMarker(day);
-    } else if (!state.isToDatePicked) {
-      let markedDates = { ...state.markedDates };
-      let [mMarkedDates, range] = setupMarkedDates(
+    } else {
+      const [mMarkedDates, range] = setupMarkedDates(
         state.fromDate,
         day.dateString,
-        markedDates
+        { ...state.markedDates }
       );
+
       if (range >= 0) {
         setState({
           ...state,
