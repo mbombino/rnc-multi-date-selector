@@ -29,8 +29,8 @@ export default function TabTwoScreen() {
         onSuccess={(start, end) => {
           setDateRange({
             ...dateRange,
-            fromDate: start,
-            toDate: end,
+            fromDate: start as string,
+            toDate: end as string,
           });
         }}
       />

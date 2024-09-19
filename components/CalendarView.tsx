@@ -10,12 +10,8 @@ export const styles = StyleSheet.create<{
 }>({
   startDateStyle: {
     backgroundColor: "#33B1FF",
-    width: "100%",
-
-    borderTopLeftRadius: 3,
-    borderTopRightRadius: 0,
-    borderBottomLeftRadius: 3,
-    borderBottomRightRadius: 0,
+    //width: "100%",
+    borderRadius: 100,
     zIndex: 1,
   },
   endDateStyle: {
