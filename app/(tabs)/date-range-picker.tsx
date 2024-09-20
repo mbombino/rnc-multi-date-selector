@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Calendar } from "react-native-calendars";
 import { styles } from "@/components/CalendarView";
 import { LinearGradient } from "expo-linear-gradient";
-import CalendarHeader from "react-native-calendars/src/calendar/header";
-import { View, Text } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 
 interface DateRangePickerProps {
