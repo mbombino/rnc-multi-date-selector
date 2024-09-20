@@ -103,6 +103,9 @@ export const DateRangePicker = (props: DateRangePickerProps) => {
       };
     }
 
+    markedDates[_fromDate.toISOString().split("T")[0]].customStyles.container =
+      styles.startDateRangeStyle;
+
     return [markedDates, dayDiff];
   };
   function addDays(date: Date | string, daysToAdd: number): string {

@@ -10,18 +10,15 @@ export const styles = StyleSheet.create<{
   container: ViewStyle;
 }>({
   startDateStyle: {
+    borderRadius: 50,
+    backgroundColor: "#33D4FF",
+  },
+  startDateRangeStyle: {
     position: "absolute",
     left: "40%",
     borderRadius: 50,
     backgroundColor: "#33D4FF",
     width: "100%",
-  },
-  startDateRangeStyle: {
-    backgroundColor: "#33B1FF",
-    //width: "100%"
-    right: "auto",
-    borderRadius: 50,
-    //zIndex: 1,
   },
   endDateStyle: {
     backgroundColor: "#33B1FF",
@@ -43,10 +40,6 @@ export const styles = StyleSheet.create<{
     backgroundColor: "#33B1FF",
     padding: 7,
     color: "white",
-    //position: "absolute",
-    //left: "50%",
-    //width: "50%",
-    //right: "auto",
     borderRadius: 50,
   },
   textMiddleStyle: {
