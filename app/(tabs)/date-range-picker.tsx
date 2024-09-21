@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Calendar } from "react-native-calendars";
 import { styles } from "@/components/CalendarView";
-import { LinearGradient } from "expo-linear-gradient";
 import { ThemedText } from "@/components/ThemedText";
 
 interface DateRangePickerProps {
@@ -9,22 +8,6 @@ interface DateRangePickerProps {
 }
 
 export const DateRangePicker = (props: DateRangePickerProps) => {
-  const [currentDay, setCurrentDay] = useState("");
-  const [currentMonth, setCurrentMonth] = useState("");
-
-  useEffect(() => {
-    const today = new Date();
-    const month = today.toLocaleString("default", { month: "long" });
-    setCurrentMonth(month);
-  }, []);
-
-  // Change Month in Calendar
-  const handleMonthChange = (month: { dateString: string | number | Date }) => {
-    const date = new Date(month.dateString);
-    const monthName = date.toLocaleString("default", { month: "long" });
-    setCurrentMonth(monthName);
-  };
-
   const { onSuccess } = props;
   const [state, setState] = useState({
     isFromDatePicked: false,
@@ -99,12 +82,14 @@ export const DateRangePicker = (props: DateRangePickerProps) => {
           container: i < dayDiff ? styles.middleDateStyle : styles.endDateStyle,
           text: i < dayDiff ? styles.textMiddleStyle : styles.textStyle,
         },
-        ...(i === dayDiff && { endingDay: true }),
+        ...(i === dayDiff && { endingDay: false }),
       };
     }
 
     markedDates[_fromDate.toISOString().split("T")[0]].customStyles.container =
       styles.startDateRangeStyle;
+    markedDates[_fromDate.toISOString().split("T")[0]].customStyles.text =
+      styles.textDateRangeStyle;
 
     return [markedDates, dayDiff];
   };
@@ -120,23 +105,8 @@ export const DateRangePicker = (props: DateRangePickerProps) => {
       firstDay={1}
       markingType={"custom"}
       minDate={new Date().toString()}
-      onMonthChange={handleMonthChange}
       markedDates={state.markedDates}
       onDayPress={(day: any) => onDayPress(day)}
-      renderHeader={() => (
-        <LinearGradient
-          colors={["#004aad", "#5de0e6"]}
-          style={{
-            padding: 15,
-            borderTopRightRadius: 5,
-            borderTopLeftRadius: 5,
-          }}
-          start={{ x: 0, y: 0.5 }}
-          end={{ x: 1, y: 0.5 }}
-        >
-          <ThemedText type="defaultSemiBold">{currentMonth}</ThemedText>
-        </LinearGradient>
-      )}
     />
   );
 };

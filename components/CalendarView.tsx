@@ -7,43 +7,46 @@ export const styles = StyleSheet.create<{
   middleDateStyle: ViewStyle;
   textStyle: TextStyle;
   textMiddleStyle: TextStyle;
+  textDateRangeStyle: TextStyle;
   container: ViewStyle;
 }>({
   startDateStyle: {
     borderRadius: 50,
-    backgroundColor: "#33D4FF",
+    backgroundColor: "#33B1FF",
+    zIndex: 1,
   },
   startDateRangeStyle: {
-    position: "absolute",
-    left: "40%",
-    borderRadius: 50,
+    borderTopLeftRadius: 50,
+    borderBottomLeftRadius: 50,
     backgroundColor: "#33D4FF",
     width: "100%",
+    marginStart: 10,
   },
   endDateStyle: {
     backgroundColor: "#33B1FF",
-    //width: "100%",
     borderRadius: 50,
     zIndex: 1,
   },
   middleDateStyle: {
     backgroundColor: "#33D4FF",
     width: "100%",
-    position: "absolute",
-    zIndex: 0,
   },
   textStyle: {
-    position: "absolute",
-    left: 0,
-    bottom: 0,
-    justifyContent: "center",
-    backgroundColor: "#33B1FF",
-    padding: 7,
     color: "white",
-    borderRadius: 50,
   },
   textMiddleStyle: {
     color: "white",
+  },
+  textDateRangeStyle: {
+    textAlign: "center",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    backgroundColor: "#33B1FF",
+    color: "white",
+    borderRadius: 20,
+    width: "80%",
+    padding: 5,
   },
 
   container: {
