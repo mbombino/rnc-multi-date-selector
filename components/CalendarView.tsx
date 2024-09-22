@@ -3,33 +3,51 @@ import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 export const styles = StyleSheet.create<{
   startDateStyle: ViewStyle;
   startDateRangeStyle: ViewStyle;
+  startDateSundayStyle: ViewStyle;
   endDateStyle: ViewStyle;
   middleDateStyle: ViewStyle;
+  middleDateSundayStyle: ViewStyle;
+  middleDateMondayStyle: ViewStyle;
   textStyle: TextStyle;
   textMiddleStyle: TextStyle;
-  textDateRangeStyle: TextStyle;
-  container: ViewStyle;
+  textStartDateStyle: TextStyle;
+  textStartDateSundayStyle: TextStyle;
+  textEndDateStyle: TextStyle;
 }>({
   startDateStyle: {
-    borderRadius: 50,
+    borderRadius: 20,
     backgroundColor: "#33B1FF",
-    zIndex: 1,
   },
   startDateRangeStyle: {
     borderTopLeftRadius: 50,
     borderBottomLeftRadius: 50,
     backgroundColor: "#33D4FF",
-    width: "100%",
-    marginStart: 10,
+  },
+  startDateSundayStyle: {
+    borderTopLeftRadius: 50,
+    borderBottomLeftRadius: 50,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: "#33D4FF",
   },
   endDateStyle: {
-    backgroundColor: "#33B1FF",
-    borderRadius: 50,
-    zIndex: 1,
+    backgroundColor: "#33D4FF",
+    borderTopRightRadius: 50,
+    borderBottomRightRadius: 50,
   },
   middleDateStyle: {
     backgroundColor: "#33D4FF",
-    width: "100%",
+    width: "125%",
+  },
+  middleDateSundayStyle: {
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: "#33D4FF",
+  },
+  middleDateMondayStyle: {
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    backgroundColor: "#33D4FF",
   },
   textStyle: {
     color: "white",
@@ -37,7 +55,7 @@ export const styles = StyleSheet.create<{
   textMiddleStyle: {
     color: "white",
   },
-  textDateRangeStyle: {
+  textStartDateStyle: {
     textAlign: "center",
     position: "absolute",
     bottom: 0,
@@ -45,29 +63,29 @@ export const styles = StyleSheet.create<{
     backgroundColor: "#33B1FF",
     color: "white",
     borderRadius: 20,
-    width: "80%",
-    padding: 5,
+    width: "100%",
+    padding: "16%",
   },
-
-  container: {
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 6,
-    borderRadius: 10,
-    backgroundColor: "white",
-    width: "50%",
-    alignSelf: "center",
-    height: 450,
-    justifyContent: "center",
-    alignItems: "center",
-    marginHorizontal: 5,
-    marginTop: 20,
-    marginBottom: 5,
-    borderWidth: 1,
+  textStartDateSundayStyle: {
+    textAlign: "center",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    backgroundColor: "#33B1FF",
+    color: "white",
+    borderRadius: 20,
+    width: "100%",
+    padding: "16%",
+  },
+  textEndDateStyle: {
+    textAlign: "center",
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    backgroundColor: "#33B1FF",
+    color: "white",
+    borderRadius: 20,
+    width: "100%",
+    padding: "16%",
   },
 });

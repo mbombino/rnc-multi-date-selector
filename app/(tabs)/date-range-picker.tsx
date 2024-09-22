@@ -67,29 +67,37 @@ export const DateRangePicker = (props: DateRangePickerProps) => {
     toDate: string,
     markedDates: Record<string, any>
   ) => {
-    const _fromDate = new Date(fromDate);
-    const _toDate = new Date(toDate);
+    const startDate = new Date(fromDate);
+    const endDate = new Date(toDate);
     const dayDiff = Math.floor(
-      (_toDate.getTime() - _fromDate.getTime()) / (1000 * 60 * 60 * 24)
+      (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
     );
 
     for (let i = 1; i <= dayDiff; i++) {
-      const tempDate = addDays(_fromDate, i);
+      const tempDate = addDays(startDate, i);
       if (tempDate in state.selectedDates) break;
 
       markedDates[tempDate] = {
         customStyles: {
-          container: i < dayDiff ? styles.middleDateStyle : styles.endDateStyle,
-          text: i < dayDiff ? styles.textMiddleStyle : styles.textStyle,
+          container:
+            i < dayDiff && new Date(tempDate).getDay() === 0
+              ? styles.middleDateSundayStyle
+              : styles.middleDateStyle,
+          text: i < dayDiff ? styles.textMiddleStyle : styles.textEndDateStyle,
         },
-        ...(i === dayDiff && { endingDay: false }),
+        ...(i === dayDiff && { endingDay: true }),
       };
     }
 
-    markedDates[_fromDate.toISOString().split("T")[0]].customStyles.container =
-      styles.startDateRangeStyle;
-    markedDates[_fromDate.toISOString().split("T")[0]].customStyles.text =
-      styles.textDateRangeStyle;
+    const formattedDate = startDate.toISOString().split("T")[0];
+    markedDates[formattedDate].customStyles.container =
+      startDate.getDay() === 0
+        ? styles.startDateSundayStyle
+        : styles.startDateRangeStyle;
+    markedDates[formattedDate].customStyles.text =
+      startDate.getDay() === 0
+        ? styles.textStartDateSundayStyle
+        : styles.textStartDateStyle;
 
     return [markedDates, dayDiff];
   };
