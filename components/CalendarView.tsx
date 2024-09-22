@@ -5,6 +5,8 @@ export const styles = StyleSheet.create<{
   startDateRangeStyle: ViewStyle;
   startDateSundayStyle: ViewStyle;
   endDateStyle: ViewStyle;
+  endDateMondayStyle: ViewStyle;
+  endDateTuesdayStyle: ViewStyle;
   middleDateStyle: ViewStyle;
   middleDateSundayStyle: ViewStyle;
   middleDateMondayStyle: ViewStyle;
@@ -13,6 +15,7 @@ export const styles = StyleSheet.create<{
   textStartDateStyle: TextStyle;
   textStartDateSundayStyle: TextStyle;
   textEndDateStyle: TextStyle;
+  textEndDateTuesdayStyle: TextStyle;
 }>({
   startDateStyle: {
     borderRadius: 20,
@@ -34,6 +37,20 @@ export const styles = StyleSheet.create<{
     backgroundColor: "#33D4FF",
     borderTopRightRadius: 50,
     borderBottomRightRadius: 50,
+  },
+  endDateMondayStyle: {
+    backgroundColor: "#33D4FF",
+    borderTopRightRadius: 50,
+    borderBottomRightRadius: 50,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+  },
+  endDateTuesdayStyle: {
+    backgroundColor: "#33D4FF",
+    borderTopRightRadius: 50,
+    borderBottomRightRadius: 50,
+    width: "115%",
+    marginEnd: "45%",
   },
   middleDateStyle: {
     backgroundColor: "#33D4FF",
@@ -87,5 +104,16 @@ export const styles = StyleSheet.create<{
     borderRadius: 20,
     width: "100%",
     padding: "16%",
+  },
+  textEndDateTuesdayStyle: {
+    textAlign: "center",
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    backgroundColor: "#33B1FF",
+    color: "white",
+    borderRadius: 20,
+    width: "70%",
+    padding: "10%",
   },
 });

@@ -75,18 +75,42 @@ export const DateRangePicker = (props: DateRangePickerProps) => {
 
     for (let i = 1; i <= dayDiff; i++) {
       const tempDate = addDays(startDate, i);
-      if (tempDate in state.selectedDates) break;
 
-      markedDates[tempDate] = {
-        customStyles: {
-          container:
-            i < dayDiff && new Date(tempDate).getDay() === 0
-              ? styles.middleDateSundayStyle
-              : styles.middleDateStyle,
-          text: i < dayDiff ? styles.textMiddleStyle : styles.textEndDateStyle,
-        },
-        ...(i === dayDiff && { endingDay: true }),
-      };
+      if (i < dayDiff) {
+        const dayOfWeek = new Date(tempDate).getDay();
+        const styleKey =
+          dayOfWeek === 0
+            ? "middleDateSundayStyle"
+            : dayOfWeek === 1
+            ? "middleDateMondayStyle"
+            : "middleDateStyle";
+        markedDates[tempDate] = {
+          customStyles: {
+            container: styles[styleKey],
+            text: styles.textMiddleStyle,
+          },
+        };
+      } else {
+        const dayOfWeek = new Date(tempDate).getDay();
+        const styleKey =
+          dayOfWeek === 1
+            ? "endDateMondayStyle"
+            : dayOfWeek === 2
+            ? "endDateTuesdayStyle"
+            : "endDateStyle";
+        const textKey =
+          dayOfWeek === 1
+            ? "textEndDateStyle"
+            : dayOfWeek === 2
+            ? "textEndDateTuesdayStyle"
+            : "textEndDateStyle";
+        markedDates[tempDate] = {
+          customStyles: {
+            container: styles[styleKey],
+            text: styles[textKey],
+          },
+        };
+      }
     }
 
     const formattedDate = startDate.toISOString().split("T")[0];
