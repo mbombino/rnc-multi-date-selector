@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "353613403546",
+    "project_id": "solution-heap",
+    "storage_bucket": "solution-heap.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353613403546:android:78d793e444893da5dbd623",
+        "android_client_info": {
+          "package_name": "com.solution.heap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc6OfrdCJXmaStIs-xi3N9b1vf28xn69g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
