@@ -6,7 +6,6 @@ import { ExternalLink } from "@/components/ExternalLink";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { DateRangePicker } from "./date-range-picker";
 import { useState } from "react";
 
 export default function TabTwoScreen() {
@@ -24,16 +23,6 @@ export default function TabTwoScreen() {
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Explore</ThemedText>
       </ThemedView>
-
-      <DateRangePicker
-        onSuccess={(start, end) => {
-          setDateRange({
-            ...dateRange,
-            fromDate: start as string,
-            toDate: end as string,
-          });
-        }}
-      />
       <ThemedText>
         This app includes example code to help you get started.
       </ThemedText>
