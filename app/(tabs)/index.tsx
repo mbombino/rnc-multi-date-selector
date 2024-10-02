@@ -11,7 +11,7 @@ import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   H6,
@@ -21,12 +21,18 @@ import {
   Image,
   YStack,
   ZStack,
+  Sheet,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Separator,
 } from "tamagui";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Colors } from "@/constants/Colors";
 
 export default function HomeScreen() {
   const theme = useColorScheme() ?? "light";
+  const [commentsSheetOpen, setCommentsSheetOpen] = useState<boolean>(false);
   return (
     <ScrollView>
       <View>
@@ -147,6 +153,7 @@ export default function HomeScreen() {
                 borderColor={
                   theme === "light" ? Colors.light.icon : Colors.dark.icon
                 }
+                onPress={() => setCommentsSheetOpen(true)}
               >
                 <XStack alignItems="center" columnGap="$2">
                   <Ionicons
@@ -173,6 +180,44 @@ export default function HomeScreen() {
             />
           </Card.Background>
         </Card>
+      </View>
+      <View style={{ alignSelf: "center" }}>
+        <Ionicons
+          name="arrow-down-circle"
+          size={18}
+          color={theme === "light" ? Colors.light.icon : Colors.dark.icon}
+        />
+      </View>
+      <View>
+        <XStack alignItems="center">
+          <Avatar circular>
+            <AvatarImage source={require("@/assets/images/react-logo.png")} />
+            <AvatarFallback />
+          </Avatar>
+          <Paragraph>Commenter</Paragraph>
+        </XStack>
+      </View>
+      <View style={{ marginStart: 30 }}>
+        <XStack alignItems="center">
+          <Avatar circular>
+            <AvatarImage source={require("@/assets/images/react-logo.png")} />
+            <AvatarFallback backgroundColor={"$blue10Light"} />
+          </Avatar>
+          <Paragraph>Replier</Paragraph>
+        </XStack>
+        <Separator
+          vertical
+          paddingVertical="$2"
+          marginStart="$5"
+          borderColor={theme === "light" ? Colors.light.icon : Colors.dark.icon}
+        />
+        <XStack alignItems="center">
+          <Avatar circular>
+            <AvatarImage source={require("@/assets/images/react-logo.png")} />
+            <AvatarFallback backgroundColor={"$blue10Light"} />
+          </Avatar>
+          <Paragraph>Replier</Paragraph>
+        </XStack>
       </View>
     </ScrollView>
   );
