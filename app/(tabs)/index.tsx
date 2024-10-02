@@ -189,15 +189,71 @@ export default function HomeScreen() {
         />
       </View>
       <View>
-        <XStack alignItems="center">
-          <Avatar circular>
-            <AvatarImage source={require("@/assets/images/react-logo.png")} />
-            <AvatarFallback />
-          </Avatar>
-          <Paragraph>Commenter</Paragraph>
-        </XStack>
+        <Card marginBottom="$2">
+          <Card.Header>
+            <XStack alignItems="center">
+              <Avatar circular>
+                <AvatarImage
+                  source={require("@/assets/images/react-logo.png")}
+                />
+                <AvatarFallback />
+              </Avatar>
+              <Paragraph>Commenter</Paragraph>
+            </XStack>
+            <Paragraph>A comment here</Paragraph>
+          </Card.Header>
+          <Card.Footer paddingStart="$5" paddingBottom="$5">
+            <XStack gap="$5">
+              <Button
+                size="$1.5"
+                //borderRadius="$10"
+                borderWidth="$0.25"
+                borderColor={
+                  theme === "light" ? Colors.light.icon : Colors.dark.icon
+                }
+              >
+                <XStack alignItems="center" columnGap="$2">
+                  <Ionicons
+                    name="heart-outline"
+                    size={18}
+                    color={
+                      theme === "light" ? Colors.light.icon : Colors.dark.icon
+                    }
+                  />
+                  <Paragraph>0</Paragraph>
+                </XStack>
+              </Button>
+              <Button
+                size="$1.5"
+                //borderRadius="$10"
+                borderWidth="$0.25"
+                borderColor={
+                  theme === "light" ? Colors.light.icon : Colors.dark.icon
+                }
+                onPress={() => setCommentsSheetOpen(true)}
+              >
+                <XStack alignItems="center" columnGap="$2">
+                  <Ionicons
+                    name="arrow-undo-outline"
+                    size={18}
+                    color={
+                      theme === "light" ? Colors.light.icon : Colors.dark.icon
+                    }
+                  />
+                  <Paragraph>reply</Paragraph>
+                </XStack>
+              </Button>
+            </XStack>
+          </Card.Footer>
+        </Card>
       </View>
       <View style={{ marginStart: 30 }}>
+        <Separator
+          vertical
+          paddingVertical="$2"
+          marginStart="$5"
+          borderColor={theme === "light" ? Colors.light.icon : Colors.dark.icon}
+        />
         <XStack alignItems="center">
           <Avatar circular>
             <AvatarImage source={require("@/assets/images/react-logo.png")} />
