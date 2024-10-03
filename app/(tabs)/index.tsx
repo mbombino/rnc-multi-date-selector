@@ -35,11 +35,12 @@ export default function HomeScreen() {
   const [commentsSheetOpen, setCommentsSheetOpen] = useState<boolean>(false);
   return (
     <ScrollView>
+      {/* ----------------------FEED CONTAINING POSTS--------------------------------*/}
       <View>
         <Card size="$4" borderRadius={0}>
           <Card.Header padded>
             <XStack alignItems="center">
-              <Paragraph>@gr8/maths_lit</Paragraph>
+              <Paragraph>@gr10/maths</Paragraph>
               <XStack flex={1} />
               <Button
                 size="$1.5"
@@ -86,20 +87,13 @@ export default function HomeScreen() {
         />
       </View>
 
+      {/* ----------------------POSTS FOR A PAPER PER GRADE--------------------------------*/}
+
       <View>
         <Card size="$4" borderRadius={0}>
           <Card.Header padded>
             <XStack alignItems="center">
-              <Paragraph>@gr8/maths_lit_paper_one{">"}question_one</Paragraph>
-              <XStack flex={1} />
-              <Button
-                size="$2"
-                //borderRadius="$10"
-                //backgroundColor={"$blue11Light"}
-                //color={"white"}
-              >
-                2020
-              </Button>
+              <Paragraph>@gr10/maths/tests</Paragraph>
             </XStack>
 
             <Paragraph theme="alt2" numberOfLines={3}>
@@ -107,8 +101,8 @@ export default function HomeScreen() {
               now. But it'll be stuff related to recent past question papers
             </Paragraph>
           </Card.Header>
-          <Card.Footer padded alignSelf="flex-end">
-            <YStack alignItems="center" rowGap="$5">
+          <Card.Footer padded>
+            <XStack alignItems="center" columnGap="$5">
               <Button
                 size="$1.5"
                 borderWidth="$0.25"
@@ -118,31 +112,13 @@ export default function HomeScreen() {
               >
                 <XStack alignItems="center" columnGap="$2">
                   <Ionicons
-                    name="eye"
+                    name="document-attach-outline"
                     size={18}
                     color={
                       theme === "light" ? Colors.light.icon : Colors.dark.icon
                     }
                   />
-                  <Paragraph>0</Paragraph>
-                </XStack>
-              </Button>
-              <Button
-                size="$1.5"
-                borderWidth="$0.25"
-                borderColor={
-                  theme === "light" ? Colors.light.icon : Colors.dark.icon
-                }
-              >
-                <XStack alignItems="center" columnGap="$2">
-                  <Ionicons
-                    name="heart"
-                    size={18}
-                    color={
-                      theme === "light" ? Colors.light.icon : Colors.dark.icon
-                    }
-                  />
-                  <Paragraph>0</Paragraph>
+                  <Paragraph>5 tests</Paragraph>
                 </XStack>
               </Button>
 
@@ -166,7 +142,7 @@ export default function HomeScreen() {
                   <Paragraph>0</Paragraph>
                 </XStack>
               </Button>
-            </YStack>
+            </XStack>
           </Card.Footer>
           <Card.Background>
             <Image
@@ -188,6 +164,7 @@ export default function HomeScreen() {
           color={theme === "light" ? Colors.light.icon : Colors.dark.icon}
         />
       </View>
+      {/* ----------------------COMMENTS AND REPLIES--------------------------------*/}
       <View>
         <YStack>
           <View>
@@ -252,15 +229,16 @@ export default function HomeScreen() {
           </View>
 
           <View>
-            <Separator
-              vertical
-              paddingVertical="$2"
-              marginStart="$8"
+            <Card
+              unstyled
+              borderLeftWidth="$0.25"
               borderColor={
                 theme === "light" ? Colors.light.icon : Colors.dark.icon
               }
-              borderWidth="$0.25"
-            />
+              borderRadius={0}
+              marginLeft="$8"
+              height="$1"
+            ></Card>
 
             <Card marginLeft="$5" marginTop="$2" marginBottom="$2">
               <Card.Header>
@@ -388,12 +366,7 @@ export default function HomeScreen() {
                 </Card.Footer>
               </Card>
             </Card>
-            <Card
-              marginLeft="$5"
-              marginTop="$2"
-              marginBottom="$2"
-              marginRight="$5"
-            >
+            <Card marginLeft="$5" marginTop="$2" marginBottom="$2">
               <Card.Header>
                 <XStack alignItems="center">
                   <Avatar circular>
@@ -517,6 +490,13 @@ export default function HomeScreen() {
             </Card>
           </View>
         </YStack>
+      </View>
+      <View style={{ alignSelf: "center" }}>
+        <Ionicons
+          name="arrow-down-circle"
+          size={18}
+          color={theme === "light" ? Colors.light.icon : Colors.dark.icon}
+        />
       </View>
     </ScrollView>
   );
