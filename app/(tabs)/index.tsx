@@ -26,13 +26,21 @@ import {
   AvatarFallback,
   AvatarImage,
   Separator,
+  Input,
 } from "tamagui";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Colors } from "@/constants/Colors";
+import { ChevronUp, ChevronDown } from "@tamagui/lucide-icons";
 
 export default function HomeScreen() {
   const theme = useColorScheme() ?? "light";
-  const [commentsSheetOpen, setCommentsSheetOpen] = useState<boolean>(false);
+  const [position, setPosition] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [modal, setModal] = useState(true);
+  const [innerOpen, setInnerOpen] = useState(false);
+
+  const snapPoint = [85, 50, 25];
+
   return (
     <ScrollView>
       {/* ----------------------FEED CONTAINING POSTS--------------------------------*/}
@@ -44,7 +52,6 @@ export default function HomeScreen() {
               <XStack flex={1} />
               <Button
                 size="$1.5"
-                //borderRadius="$10"
                 backgroundColor={"$blue11Light"}
                 color={"white"}
               >
@@ -105,10 +112,10 @@ export default function HomeScreen() {
             <XStack alignItems="center" columnGap="$5">
               <Button
                 size="$1.5"
-                borderWidth="$0.25"
-                borderColor={
+                //borderWidth="$0.25"
+                /*borderColor={
                   theme === "light" ? Colors.light.icon : Colors.dark.icon
-                }
+                }*/
               >
                 <XStack alignItems="center" columnGap="$2">
                   <Ionicons
@@ -224,6 +231,7 @@ export default function HomeScreen() {
                 <XStack alignItems="center">
                   <Paragraph>answer_king</Paragraph>
                   <XStack flex={1} />
+
                   <Ionicons
                     name="medal-outline"
                     size={18}
@@ -246,6 +254,10 @@ export default function HomeScreen() {
                     borderColor={
                       theme === "light" ? Colors.light.icon : Colors.dark.icon
                     }
+                    onPress={() => {
+                      //setModal((x) => !x); //inline sheet
+                      setOpen(true);
+                    }}
                   >
                     <XStack alignItems="center" columnGap="$2">
                       <Ionicons
@@ -285,6 +297,35 @@ export default function HomeScreen() {
         />
       </View>
       {/* ----------------------COMMENTS AND REPLIES--------------------------------*/}
+      <Sheet
+        forceRemoveScrollEnabled={open}
+        modal={modal}
+        open={open}
+        onOpenChange={setOpen}
+        snapPoints={snapPoint}
+        snapPointsMode="percent"
+        dismissOnSnapToBottom
+        position={position}
+        onPositionChange={setPosition}
+        zIndex={100_000}
+        animation="medium"
+        moveOnKeyboardChange={true}
+      >
+        <Sheet.Overlay
+          animation="lazy"
+          enterStyle={{ opacity: 0 }}
+          exitStyle={{ opacity: 0 }}
+        />
+
+        <Sheet.Frame padding="$4" justifyContent="center" alignItems="center">
+          <Button
+            size="$6"
+            circular
+            icon={ChevronDown}
+            onPress={() => setOpen(false)}
+          />
+        </Sheet.Frame>
+      </Sheet>
       <View>
         <YStack>
           <View>
