@@ -654,6 +654,8 @@ export default function HomeScreen() {
               </Card>
             </View>
           </Sheet.ScrollView>
+          <Separator marginBottom="$2" />
+          <Input placeholder="Add a comment" width="100%" />
         </Sheet.Frame>
       </Sheet>
     </ScrollView>
