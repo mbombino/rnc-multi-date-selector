@@ -27,10 +27,11 @@ import {
   AvatarImage,
   Separator,
   Input,
+  PopoverClose,
 } from "tamagui";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Colors } from "@/constants/Colors";
-import { ChevronUp, ChevronDown } from "@tamagui/lucide-icons";
+import { ChevronUp, ChevronDown, Cross } from "@tamagui/lucide-icons";
 
 export default function HomeScreen() {
   const theme = useColorScheme() ?? "light";
@@ -39,7 +40,7 @@ export default function HomeScreen() {
   const [modal, setModal] = useState(true);
   const [innerOpen, setInnerOpen] = useState(false);
 
-  const snapPoint = [85, 50, 25];
+  const snapPoint = [500, 500];
 
   return (
     <ScrollView>
@@ -303,13 +304,12 @@ export default function HomeScreen() {
         open={open}
         onOpenChange={setOpen}
         snapPoints={snapPoint}
-        snapPointsMode="percent"
+        snapPointsMode="constant"
         dismissOnSnapToBottom
         position={position}
         onPositionChange={setPosition}
-        zIndex={100_000}
+        //zIndex={100_000}
         animation="medium"
-        moveOnKeyboardChange={true}
       >
         <Sheet.Overlay
           animation="lazy"
@@ -317,169 +317,29 @@ export default function HomeScreen() {
           exitStyle={{ opacity: 0 }}
         />
 
-        <Sheet.Frame padding="$4" justifyContent="center" alignItems="center">
+        <Sheet.Frame padding="$4">
           <Button
-            size="$6"
+            size="$4"
             circular
-            icon={ChevronDown}
+            icon={Cross}
             onPress={() => setOpen(false)}
+            marginBottom="$2"
           />
-        </Sheet.Frame>
-      </Sheet>
-      <View>
-        <YStack>
-          <View>
-            <Card marginBottom="$2">
-              <Card.Header>
-                <XStack alignItems="center">
-                  <Avatar circular>
-                    <AvatarImage
-                      source={require("@/assets/images/react-logo.png")}
-                    />
-                    <AvatarFallback />
-                  </Avatar>
-                  <Paragraph>Commenter</Paragraph>
-                </XStack>
-                <Paragraph>A comment here</Paragraph>
-              </Card.Header>
-              <Card.Footer paddingStart="$5" paddingBottom="$5">
-                <XStack gap="$5">
-                  <Button
-                    size="$1.5"
-                    borderWidth="$0.25"
-                    borderColor={
-                      theme === "light" ? Colors.light.icon : Colors.dark.icon
-                    }
-                  >
-                    <XStack alignItems="center" columnGap="$2">
-                      <Ionicons
-                        name="heart-outline"
-                        size={18}
-                        color={
-                          theme === "light"
-                            ? Colors.light.icon
-                            : Colors.dark.icon
-                        }
-                      />
-                      <Paragraph>0</Paragraph>
-                    </XStack>
-                  </Button>
-                  <Button
-                    size="$1.5"
-                    borderWidth="$0.25"
-                    borderColor={
-                      theme === "light" ? Colors.light.icon : Colors.dark.icon
-                    }
-                  >
-                    <XStack alignItems="center" columnGap="$2">
-                      <Ionicons
-                        name="arrow-undo-outline"
-                        size={18}
-                        color={
-                          theme === "light"
-                            ? Colors.light.icon
-                            : Colors.dark.icon
-                        }
-                      />
-                      <Paragraph>reply</Paragraph>
-                    </XStack>
-                  </Button>
-                </XStack>
-              </Card.Footer>
-            </Card>
-          </View>
-
-          <View>
-            <Card
-              unstyled
-              borderLeftWidth="$0.25"
-              borderColor={
-                theme === "light" ? Colors.light.icon : Colors.dark.icon
-              }
-              borderRadius={0}
-              marginLeft="$8"
-              height="$1"
-            ></Card>
-
-            <Card marginLeft="$5" marginTop="$2" marginBottom="$2">
-              <Card.Header>
-                <XStack alignItems="center">
-                  <Avatar circular>
-                    <AvatarImage
-                      source={require("@/assets/images/react-logo.png")}
-                    />
-                    <AvatarFallback backgroundColor={"$blue10Light"} />
-                  </Avatar>
-                  <Paragraph>Replier</Paragraph>
-                </XStack>
-                <Paragraph>A reply here</Paragraph>
-              </Card.Header>
-              <Card.Footer paddingStart="$5" paddingBottom="$5">
-                <XStack gap="$5">
-                  <Button
-                    size="$1.5"
-                    borderWidth="$0.25"
-                    borderColor={
-                      theme === "light" ? Colors.light.icon : Colors.dark.icon
-                    }
-                  >
-                    <XStack alignItems="center" columnGap="$2">
-                      <Ionicons
-                        name="heart-outline"
-                        size={18}
-                        color={
-                          theme === "light"
-                            ? Colors.light.icon
-                            : Colors.dark.icon
-                        }
-                      />
-                      <Paragraph>0</Paragraph>
-                    </XStack>
-                  </Button>
-                  <Button
-                    size="$1.5"
-                    borderWidth="$0.25"
-                    borderColor={
-                      theme === "light" ? Colors.light.icon : Colors.dark.icon
-                    }
-                  >
-                    <XStack alignItems="center" columnGap="$2">
-                      <Ionicons
-                        name="arrow-undo-outline"
-                        size={18}
-                        color={
-                          theme === "light"
-                            ? Colors.light.icon
-                            : Colors.dark.icon
-                        }
-                      />
-                      <Paragraph>reply</Paragraph>
-                    </XStack>
-                  </Button>
-                </XStack>
-              </Card.Footer>
-            </Card>
-            <Card
-              unstyled
-              borderLeftWidth="$0.25"
-              borderColor={
-                theme === "light" ? Colors.light.icon : Colors.dark.icon
-              }
-              borderRadius={0}
-              marginLeft="$8"
-            >
-              <Card marginLeft="$5" marginTop="$2" marginBottom="$2">
+          <Separator marginBottom="$2" />
+          <Sheet.ScrollView showsVerticalScrollIndicator={false}>
+            <View>
+              <Card marginBottom="$2">
                 <Card.Header>
                   <XStack alignItems="center">
                     <Avatar circular>
                       <AvatarImage
                         source={require("@/assets/images/react-logo.png")}
                       />
-                      <AvatarFallback backgroundColor={"$blue10Light"} />
+                      <AvatarFallback />
                     </Avatar>
-                    <Paragraph>Replier</Paragraph>
+                    <Paragraph>Commenter</Paragraph>
                   </XStack>
-                  <Paragraph>A reply to a reply here</Paragraph>
+                  <Paragraph>A comment here</Paragraph>
                 </Card.Header>
                 <Card.Footer paddingStart="$5" paddingBottom="$5">
                   <XStack gap="$5">
@@ -526,132 +386,276 @@ export default function HomeScreen() {
                   </XStack>
                 </Card.Footer>
               </Card>
-            </Card>
-            <Card marginLeft="$5" marginTop="$2" marginBottom="$2">
-              <Card.Header>
-                <XStack alignItems="center">
-                  <Avatar circular>
-                    <AvatarImage
-                      source={require("@/assets/images/react-logo.png")}
-                    />
-                    <AvatarFallback backgroundColor={"$blue10Light"} />
-                  </Avatar>
-                  <Paragraph>Replier</Paragraph>
-                </XStack>
-                <Paragraph>A reply here</Paragraph>
-              </Card.Header>
+            </View>
 
-              <Card.Footer paddingStart="$5" paddingBottom="$5">
-                <XStack gap="$5">
-                  <Button
-                    size="$1.5"
-                    borderWidth="$0.25"
-                    borderColor={
-                      theme === "light" ? Colors.light.icon : Colors.dark.icon
-                    }
-                  >
-                    <XStack alignItems="center" columnGap="$2">
-                      <Ionicons
-                        name="heart-outline"
-                        size={18}
-                        color={
-                          theme === "light"
-                            ? Colors.light.icon
-                            : Colors.dark.icon
-                        }
-                      />
-                      <Paragraph>0</Paragraph>
-                    </XStack>
-                  </Button>
-                  <Button
-                    size="$1.5"
-                    borderWidth="$0.25"
-                    borderColor={
-                      theme === "light" ? Colors.light.icon : Colors.dark.icon
-                    }
-                  >
-                    <XStack alignItems="center" columnGap="$2">
-                      <Ionicons
-                        name="arrow-undo-outline"
-                        size={18}
-                        color={
-                          theme === "light"
-                            ? Colors.light.icon
-                            : Colors.dark.icon
-                        }
-                      />
-                      <Paragraph>reply</Paragraph>
-                    </XStack>
-                  </Button>
-                </XStack>
-              </Card.Footer>
-            </Card>
+            <View>
+              <Card
+                unstyled
+                borderLeftWidth="$0.25"
+                borderColor={
+                  theme === "light" ? Colors.light.icon : Colors.dark.icon
+                }
+                borderRadius={0}
+                marginLeft="$8"
+                height="$1"
+              ></Card>
 
-            <Paragraph marginLeft="$5">8 replies</Paragraph>
-          </View>
+              <Card marginLeft="$5" marginTop="$2" marginBottom="$2">
+                <Card.Header>
+                  <XStack alignItems="center">
+                    <Avatar circular>
+                      <AvatarImage
+                        source={require("@/assets/images/react-logo.png")}
+                      />
+                      <AvatarFallback backgroundColor={"$blue10Light"} />
+                    </Avatar>
+                    <Paragraph>Replier</Paragraph>
+                  </XStack>
+                  <Paragraph>A reply here</Paragraph>
+                </Card.Header>
+                <Card.Footer paddingStart="$5" paddingBottom="$5">
+                  <XStack gap="$5">
+                    <Button
+                      size="$1.5"
+                      borderWidth="$0.25"
+                      borderColor={
+                        theme === "light" ? Colors.light.icon : Colors.dark.icon
+                      }
+                    >
+                      <XStack alignItems="center" columnGap="$2">
+                        <Ionicons
+                          name="heart-outline"
+                          size={18}
+                          color={
+                            theme === "light"
+                              ? Colors.light.icon
+                              : Colors.dark.icon
+                          }
+                        />
+                        <Paragraph>0</Paragraph>
+                      </XStack>
+                    </Button>
+                    <Button
+                      size="$1.5"
+                      borderWidth="$0.25"
+                      borderColor={
+                        theme === "light" ? Colors.light.icon : Colors.dark.icon
+                      }
+                    >
+                      <XStack alignItems="center" columnGap="$2">
+                        <Ionicons
+                          name="arrow-undo-outline"
+                          size={18}
+                          color={
+                            theme === "light"
+                              ? Colors.light.icon
+                              : Colors.dark.icon
+                          }
+                        />
+                        <Paragraph>reply</Paragraph>
+                      </XStack>
+                    </Button>
+                  </XStack>
+                </Card.Footer>
+              </Card>
+              <Card
+                unstyled
+                borderLeftWidth="$0.25"
+                borderColor={
+                  theme === "light" ? Colors.light.icon : Colors.dark.icon
+                }
+                borderRadius={0}
+                marginLeft="$8"
+              >
+                <Card marginLeft="$5" marginTop="$2" marginBottom="$2">
+                  <Card.Header>
+                    <XStack alignItems="center">
+                      <Avatar circular>
+                        <AvatarImage
+                          source={require("@/assets/images/react-logo.png")}
+                        />
+                        <AvatarFallback backgroundColor={"$blue10Light"} />
+                      </Avatar>
+                      <Paragraph>Replier</Paragraph>
+                    </XStack>
+                    <Paragraph>A reply to a reply here</Paragraph>
+                  </Card.Header>
+                  <Card.Footer paddingStart="$5" paddingBottom="$5">
+                    <XStack gap="$5">
+                      <Button
+                        size="$1.5"
+                        borderWidth="$0.25"
+                        borderColor={
+                          theme === "light"
+                            ? Colors.light.icon
+                            : Colors.dark.icon
+                        }
+                      >
+                        <XStack alignItems="center" columnGap="$2">
+                          <Ionicons
+                            name="heart-outline"
+                            size={18}
+                            color={
+                              theme === "light"
+                                ? Colors.light.icon
+                                : Colors.dark.icon
+                            }
+                          />
+                          <Paragraph>0</Paragraph>
+                        </XStack>
+                      </Button>
+                      <Button
+                        size="$1.5"
+                        borderWidth="$0.25"
+                        borderColor={
+                          theme === "light"
+                            ? Colors.light.icon
+                            : Colors.dark.icon
+                        }
+                      >
+                        <XStack alignItems="center" columnGap="$2">
+                          <Ionicons
+                            name="arrow-undo-outline"
+                            size={18}
+                            color={
+                              theme === "light"
+                                ? Colors.light.icon
+                                : Colors.dark.icon
+                            }
+                          />
+                          <Paragraph>reply</Paragraph>
+                        </XStack>
+                      </Button>
+                    </XStack>
+                  </Card.Footer>
+                </Card>
+              </Card>
+              <Card marginLeft="$5" marginTop="$2" marginBottom="$2">
+                <Card.Header>
+                  <XStack alignItems="center">
+                    <Avatar circular>
+                      <AvatarImage
+                        source={require("@/assets/images/react-logo.png")}
+                      />
+                      <AvatarFallback backgroundColor={"$blue10Light"} />
+                    </Avatar>
+                    <Paragraph>Replier</Paragraph>
+                  </XStack>
+                  <Paragraph>A reply here</Paragraph>
+                </Card.Header>
 
-          <View>
-            <Card marginBottom="$2" marginTop="$2">
-              <Card.Header>
-                <XStack alignItems="center">
-                  <Avatar circular>
-                    <AvatarImage
-                      source={require("@/assets/images/react-logo.png")}
-                    />
-                    <AvatarFallback />
-                  </Avatar>
-                  <Paragraph>Commenter</Paragraph>
-                </XStack>
-                <Paragraph>Another comment here</Paragraph>
-              </Card.Header>
-              <Card.Footer paddingStart="$5" paddingBottom="$5">
-                <XStack gap="$5">
-                  <Button
-                    size="$1.5"
-                    borderWidth="$0.25"
-                    borderColor={
-                      theme === "light" ? Colors.light.icon : Colors.dark.icon
-                    }
-                  >
-                    <XStack alignItems="center" columnGap="$2">
-                      <Ionicons
-                        name="heart-outline"
-                        size={18}
-                        color={
-                          theme === "light"
-                            ? Colors.light.icon
-                            : Colors.dark.icon
-                        }
+                <Card.Footer paddingStart="$5" paddingBottom="$5">
+                  <XStack gap="$5">
+                    <Button
+                      size="$1.5"
+                      borderWidth="$0.25"
+                      borderColor={
+                        theme === "light" ? Colors.light.icon : Colors.dark.icon
+                      }
+                    >
+                      <XStack alignItems="center" columnGap="$2">
+                        <Ionicons
+                          name="heart-outline"
+                          size={18}
+                          color={
+                            theme === "light"
+                              ? Colors.light.icon
+                              : Colors.dark.icon
+                          }
+                        />
+                        <Paragraph>0</Paragraph>
+                      </XStack>
+                    </Button>
+                    <Button
+                      size="$1.5"
+                      borderWidth="$0.25"
+                      borderColor={
+                        theme === "light" ? Colors.light.icon : Colors.dark.icon
+                      }
+                    >
+                      <XStack alignItems="center" columnGap="$2">
+                        <Ionicons
+                          name="arrow-undo-outline"
+                          size={18}
+                          color={
+                            theme === "light"
+                              ? Colors.light.icon
+                              : Colors.dark.icon
+                          }
+                        />
+                        <Paragraph>reply</Paragraph>
+                      </XStack>
+                    </Button>
+                  </XStack>
+                </Card.Footer>
+              </Card>
+
+              <Paragraph marginLeft="$5">8 replies</Paragraph>
+            </View>
+
+            <View>
+              <Card marginBottom="$2" marginTop="$2">
+                <Card.Header>
+                  <XStack alignItems="center">
+                    <Avatar circular>
+                      <AvatarImage
+                        source={require("@/assets/images/react-logo.png")}
                       />
-                      <Paragraph>0</Paragraph>
-                    </XStack>
-                  </Button>
-                  <Button
-                    size="$1.5"
-                    borderWidth="$0.25"
-                    borderColor={
-                      theme === "light" ? Colors.light.icon : Colors.dark.icon
-                    }
-                  >
-                    <XStack alignItems="center" columnGap="$2">
-                      <Ionicons
-                        name="arrow-undo-outline"
-                        size={18}
-                        color={
-                          theme === "light"
-                            ? Colors.light.icon
-                            : Colors.dark.icon
-                        }
-                      />
-                      <Paragraph>reply</Paragraph>
-                    </XStack>
-                  </Button>
-                </XStack>
-              </Card.Footer>
-            </Card>
-          </View>
-        </YStack>
-      </View>
+                      <AvatarFallback />
+                    </Avatar>
+                    <Paragraph>Commenter</Paragraph>
+                  </XStack>
+                  <Paragraph>Another comment here</Paragraph>
+                </Card.Header>
+                <Card.Footer paddingStart="$5" paddingBottom="$5">
+                  <XStack gap="$5">
+                    <Button
+                      size="$1.5"
+                      borderWidth="$0.25"
+                      borderColor={
+                        theme === "light" ? Colors.light.icon : Colors.dark.icon
+                      }
+                    >
+                      <XStack alignItems="center" columnGap="$2">
+                        <Ionicons
+                          name="heart-outline"
+                          size={18}
+                          color={
+                            theme === "light"
+                              ? Colors.light.icon
+                              : Colors.dark.icon
+                          }
+                        />
+                        <Paragraph>0</Paragraph>
+                      </XStack>
+                    </Button>
+                    <Button
+                      size="$1.5"
+                      borderWidth="$0.25"
+                      borderColor={
+                        theme === "light" ? Colors.light.icon : Colors.dark.icon
+                      }
+                    >
+                      <XStack alignItems="center" columnGap="$2">
+                        <Ionicons
+                          name="arrow-undo-outline"
+                          size={18}
+                          color={
+                            theme === "light"
+                              ? Colors.light.icon
+                              : Colors.dark.icon
+                          }
+                        />
+                        <Paragraph>reply</Paragraph>
+                      </XStack>
+                    </Button>
+                  </XStack>
+                </Card.Footer>
+              </Card>
+            </View>
+          </Sheet.ScrollView>
+        </Sheet.Frame>
+      </Sheet>
     </ScrollView>
   );
 }
