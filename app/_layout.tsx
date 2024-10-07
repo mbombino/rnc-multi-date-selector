@@ -12,6 +12,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { TamaguiProvider } from "tamagui";
 import { tamaguiConfig } from "../tamagui.config";
 
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
