@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Calendar } from "react-native-calendars";
 import { styles } from "@/components/CalendarView";
-import { ThemedText } from "@/components/ThemedText";
 
 interface DateRangePickerProps {
   onSuccess(startDate: String, endDate: String): void;
